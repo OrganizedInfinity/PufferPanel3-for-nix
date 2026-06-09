@@ -67,6 +67,7 @@ buildGoModule rec {
           canonicalizeSymlinksScript = ./canonicalize-symlinks.js;
           storePrefix = builtins.storeDir;
 	  workingDirectory = "./client";
+	  inherit npmDeps;
         };
         meta.license = lib.licenses.mit;
       } ./npm-config-hook.sh;

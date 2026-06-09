@@ -4,6 +4,8 @@ npmConfigHook() {
     echo "Executing npmConfigHook"
     previous_directory=$(pwd)
     cd @workingDirectory@
+    
+    export npmDeps=@npmDeps@ # inexplicable hack
 
     if [ -n "${npmRoot-}" ]; then
       pushd "$npmRoot"
