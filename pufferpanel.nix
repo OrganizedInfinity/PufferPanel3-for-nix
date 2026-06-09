@@ -116,8 +116,8 @@ buildGoModule rec {
     #  --set-default PUFFER_PANEL_WEB_FILES $out/share/pufferpanel/www
 
     # new shit here
-    mkdir -p $out/usr/sbin
-    cp "$GOPATH"/bin/cmd $out/usr/sbin/pufferpanel
+    mkdir -p $out/bin
+    cp "$GOPATH"/bin/cmd $out/bin/pufferpanel
 
     runHook postInstall
   '';
