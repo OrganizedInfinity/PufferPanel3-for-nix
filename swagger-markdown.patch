@@ -1,0 +1,11 @@
+--- a/web/loader.go
++++ b/web/loader.go
+@@ -37,7 +37,6 @@ var clientFiles fs.ReadFileFS
+ // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+ // @Accept json
+ // @Produce json
+-// @description.markdown
+ // @securitydefinitions.oauth2.application OAuth2Application
+ // @tokenUrl /oauth2/token
+ // @scope.none No scope needed
+

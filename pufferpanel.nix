@@ -25,6 +25,12 @@ buildGoModule rec {
     hash = "sha256-uLDoJ5fgyLRyc+NSJl5GcKth7naELByYN3JC+PXeBgw=";
   };
 
+  patches = [
+    # The git tree of pufferpanel uses @description.markdown but it doesnt give it its required argument
+    # Building the api docs will fail without this patch
+    ./swagger-markdown.patch
+  ];
+
   ldflags = [
     "-s"
     "-w"
@@ -85,18 +91,16 @@ buildGoModule rec {
     npm run build
     cd ..
 
+    # Generate code for Swagger documentation endpoints (see web/swagger/docs.go).
+    # Note that GOROOT embedded in go-swag is empty by default since it is built
+    # with -trimpath (see https://go.dev/cl/399214). It looks like go-swag skips
+    # file paths that start with $GOROOT, thus all files when it is empty.
+    swag init --output web/swagger --generalInfo web/loader.go --parseDependency --parseInternal
+
   '';
 
   vendorHash = "sha256-2XR6YJjYwlCRcCi2Eb0GmnneMaxqcek71BNL3Qg444o=";
   proxyVendor = true;
-
-  # Generate code for Swagger documentation endpoints (see web/swagger/docs.go).
-  # Note that GOROOT embedded in go-swag is empty by default since it is built
-  # with -trimpath (see https://go.dev/cl/399214). It looks like go-swag skips
-  # file paths that start with $GOROOT, thus all files when it is empty.
-  #preBuild = ''
-  #  GOROOT=''${GOROOT-$(go env GOROOT)} swag init --output web/swagger --generalInfo web/loader.go
-  #'';
 
   installPhase = ''
     runHook preInstall
