@@ -1,5 +1,5 @@
 {
-  description = "Pufferpanel 3 for nix";
+  description = "Pufferpanel 3.0.8 for nix";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -7,9 +7,10 @@
 
   outputs = { self, nixpkgs }: 
   let
-    pkgs = import nixpkgs { system = "x86_64-linux"; };
+    system = "x86_64-linux";
+    pkgs = import nixpkgs { inherit system; };
   in
   {
-    packages.x86_64-linux.default = nixpkgs.lib.customisation.callPackageWith pkgs ./pufferpanel.nix {};
+    packages."${system}".default = nixpkgs.lib.customisation.callPackageWith pkgs ./default.nix {};
   };
 }
