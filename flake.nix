@@ -1,5 +1,5 @@
 {
-  description = "Pufferpanel 3.0.8 for nix";
+  description = "Pufferpanel 3.0.9 for nix";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";

@@ -1,7 +1,7 @@
 # PufferPanel3-for-nix
 A nix flake for PufferPanel that is more recent than nixpkgs.
 
-Current version: 3.0.8
+Current version: 3.0.9
 
 ## Known issues
 - Check fails because some tests require an internet connection.
